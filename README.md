@@ -46,5 +46,5 @@ The structure of the files object is as follows:
       "type": "json",
       "source": "{\n  \"timeZone\": \"America\/New_York\",\n  \"dependencies\": {\n  },\n  \"exceptionLogging\": \"STACKDRIVER\"\n}"
     }
-  ]
-}
+      ]
+    }
