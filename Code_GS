@@ -1,0 +1,57 @@
+function myMainFunction() {
+  var response,sourceFileData,sourceFileID,theAccessTkn;
+  /* This comment must be present to get the correct access token
+    DriveApp.getFiles()
+  */
+  
+  /* SET UP - Get the file ID of the Apps Script file that you want the content from and
+   * enter that file ID into the code for sourceFileID
+  */
+  
+  /* NOTES
+   * There are 3 permissions that are asked for - One of them asks to run when you are not present- That
+   * comes from the line: ScriptApp.getOAuthToken()
+  */
+  
+  sourceFileID = "Put your file ID here";
+  
+  theAccessTkn = ScriptApp.getOAuthToken();
+  
+  sourceFileData = getFileData(sourceFileID, theAccessTkn);
+  
+  Logger.log('sourceFileData: ' + JSON.stringify(sourceFileData));
+  
+}
+
+function getFileData(fileID, accessToken) {
+  var downloadUrl,fileData,objFileData,options;
+  
+  downloadUrl = "https://script.google.com/feeds/download/export?id=" + fileID + "&format=json";
+
+  options = {
+    "kind": "drive#file",
+    "id": fileID,
+    "downloadUrl": downloadUrl,
+    "headers": {
+       'Authorization': 'Bearer ' +  accessToken,
+     },
+    "contentType": "application/vnd.google-apps.script+json",
+    "method" : "GET"
+  };
+
+  fileData = UrlFetchApp.fetch(downloadUrl, options);
+  
+  //Logger.log('type of fileData: ' + typeof fileData)
+  
+  objFileData = JSON.parse(fileData); //MUST be parsed-  the file content is not a real object at this point
+  //even though the typeof states that it is an object
+  
+  Logger.log('type of objFileData: ' + typeof objFileData)
+  
+  Logger.log('objFileData: ' + objFileData);
+  
+  //Logger.log('objFileData: ' + JSON.stringify(objFileData))
+  
+  return objFileData;//The data is returned as an object - not a string
+};
+
