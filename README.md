@@ -20,14 +20,14 @@ The "appsscript" type file is the manifest file.
 
 The structure of the files object is as follows:
 
-{
-  "files": [
     {
-      "id": "739a57da-f77c-4e1a-96df-7d86ef227d62",
-      "name": "Code",
-      "type": "server_js",
-      "source": "function doGet() {\n  return HtmlService.createHtmlOutputFromFile('index');\n}"
-    },
+      "files": [
+      {
+        "id": "739a57da-f77c-4e1a-96df-7d86ef227d62",
+        "name": "Code",
+        "type": "server_js",
+        "source": "function doGet() {\n  return HtmlService.createHtmlOutputFromFile('index');\n}"
+        },
     {
       "id": "2c7e8b5a-dbc5-4cd2-80e9-77b6291b3167",
       "name": "index",
